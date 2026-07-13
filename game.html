@@ -6,6 +6,7 @@
     <title>I AM | Gaming</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body { font-family: 'Pretendard', sans-serif; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .interactive-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .interactive-card:hover { transform: scale(1.05); z-index: 10; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
     </style>
@@ -43,23 +44,15 @@
     </main>
 
     <script>
+        window.onload = () => { document.body.style.opacity = '1'; };
         const pages = ['index.html', 'hobbies.html', 'game.html', 'travel.html'];
-        let isNavigating = false;
-
-        window.addEventListener('wheel', (e) => {
-            if (isNavigating) return;
-            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 50);
-            const isAtTop = window.scrollY <= 0;
+        window.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const currentIndex = pages.indexOf(currentPage);
-
-            if (e.deltaY > 0 && isAtBottom) {
-                isNavigating = true;
-                window.location.href = pages[(currentIndex + 1) % pages.length];
-            } else if (e.deltaY < 0 && isAtTop) {
-                isNavigating = true;
-                window.location.href = pages[(currentIndex - 1 + pages.length) % pages.length];
-            }
+            const targetPage = e.clientX > window.innerWidth / 2 ? pages[(currentIndex + 1) % pages.length] : pages[(currentIndex - 1 + pages.length) % pages.length];
+            document.body.style.opacity = '0';
+            setTimeout(() => { window.location.href = targetPage; }, 500);
         });
     </script>
 </body>

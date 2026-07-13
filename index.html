@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Pretendard', sans-serif; }
+        body { font-family: 'Pretendard', sans-serif; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .hero-bg {
             background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
@@ -45,23 +45,25 @@
     </footer>
 
     <script>
-        const pages = ['index.html', 'hobbies.html', 'game.html', 'travel.html'];
-        let isNavigating = false;
+        window.onload = () => { document.body.style.opacity = '1'; };
 
-        window.addEventListener('wheel', (e) => {
-            if (isNavigating) return;
-            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 50);
-            const isAtTop = window.scrollY <= 0;
+        const pages = ['index.html', 'hobbies.html', 'game.html', 'travel.html'];
+        
+        window.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
+
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const currentIndex = pages.indexOf(currentPage);
+            let targetPage = '';
 
-            if (e.deltaY > 0 && isAtBottom) {
-                isNavigating = true;
-                window.location.href = pages[(currentIndex + 1) % pages.length];
-            } else if (e.deltaY < 0 && isAtTop) {
-                isNavigating = true;
-                window.location.href = pages[(currentIndex - 1 + pages.length) % pages.length];
+            if (e.clientX > window.innerWidth / 2) {
+                targetPage = pages[(currentIndex + 1) % pages.length];
+            } else {
+                targetPage = pages[(currentIndex - 1 + pages.length) % pages.length];
             }
+
+            document.body.style.opacity = '0';
+            setTimeout(() => { window.location.href = targetPage; }, 500);
         });
     </script>
 </body>
