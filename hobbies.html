@@ -3,18 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I AM | Interactive Portfolio</title>
+    <title>I AM | Hobbies</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Pretendard', sans-serif; }
-        .hero-bg {
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-    </style>
 </head>
 <body class="bg-slate-950 text-white">
 
@@ -22,27 +12,28 @@
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-black tracking-tighter text-orange-500">I AM.</h1>
             <div class="flex space-x-8 text-sm font-bold uppercase tracking-widest">
-                <a href="index.html" class="text-orange-500 border-b-2 border-orange-500 pb-1">Home</a>
-                <a href="hobbies.html" class="hover:text-orange-500 transition">Hobbies</a>
+                <a href="index.html" class="hover:text-orange-500 transition">Home</a>
+                <a href="hobbies.html" class="text-orange-500 border-b-2 border-orange-500 pb-1">Hobbies</a>
                 <a href="game.html" class="hover:text-purple-500 transition">Gaming</a>
                 <a href="travel.html" class="hover:text-teal-500 transition">Travel</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero-bg min-h-screen flex flex-col justify-center items-center text-center px-6">
-        <h2 class="text-5xl md:text-7xl font-black mb-6 tracking-wide italic px-8">
-            PLAY MY 
-            <span class="inline-block pr-4 -mr-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-purple-400 to-teal-400">
-                WAY
-            </span>
-        </h2>
-        <p class="text-slate-300 text-xl md:text-2xl max-w-3xl font-light">스포츠부터 게임까지, 나를 정의하는 모든 것.</p>
-    </header>
-
-    <footer class="py-20 text-center border-t border-slate-900">
-        <p class="text-slate-500 uppercase tracking-widest text-sm">© 2024 I AM PROJECT. BUILD YOUR OWN WORLD.</p>
-    </footer>
+    <main class="pt-32 pb-20 max-w-6xl mx-auto px-6">
+        <h3 class="text-5xl font-black mb-16 italic text-orange-500">BASKETBALL</h3>
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h4 class="text-3xl font-bold mb-4">Position: <span class="underline decoration-orange-500">Point Guard</span></h4>
+                <p class="text-slate-400 text-lg leading-relaxed mb-12">직접 코트에서 뛰는 것도 좋아하지만, NBA 경기를 보며 전술을 분석하는 열혈 팬이기도 합니다. 포인트 가드로서의 움직임과 프로들의 화려한 플레이를 모두 사랑합니다.</p>
+                <img src="https://www.pngarts.com/files/12/NBA-Logo-PNG-Transparent-Image.png" alt="NBA Logo" class="w-72 h-auto">
+            </div>
+            <div class="flex flex-col gap-6">
+                <video src="https://i.namu.wiki/i/wDLhNmhZ_aSv3c_ZlVK-SQ6KLwAm0BAmBBFe1caFK1mUg88t2FJLCWSeD55mW8NWOysBIngL5qzNQdeHSKaF7Q.mp4" autoplay muted loop playsinline class="rounded-3xl shadow-2xl"></video>
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWZzd2g3emFtZjRoOTNnZWg4dThpdzhmc3BqbHUycmtqanVlM3RlYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rBVM213ASKBIk/giphy.gif" class="rounded-3xl shadow-2xl" alt="NBA GIF">
+            </div>
+        </div>
+    </main>
 
     <script>
         const pages = ['index.html', 'hobbies.html', 'game.html', 'travel.html'];
