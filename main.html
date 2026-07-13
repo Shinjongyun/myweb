@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I AM | Interactive Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Pretendard', sans-serif; }
+        
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .interactive-card:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Travel Container Interaction */
+        .travel-container {
+            display: flex;
+            width: 100%;
+            height: 500px;
+            gap: 0.5rem;
+            transition: all 0.5s ease;
+        }
+        .travel-card {
+            flex: 1;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 1rem;
+        }
+        
+        /* 초기 상태: 어두운 오버레이와 이름만 표시 */
+        .overlay-dim {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 0.5s ease;
+            opacity: 1;
+        }
+
+        /* 초기 상태: 제목만 표시 */
+        .title-only {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 콘텐츠 상세 내용 */
+        .content-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 호버 시 상태 */
+        .travel-container:hover .travel-card .overlay-dim {
+            opacity: 0.6; /* 호버 영역은 살짝 어둡게 */
+        }
+        .travel-container:hover .travel-card:hover .overlay-dim {
+            opacity: 0; /* 선택된 카드는 밝게 */
+        }
+
+        /* 카드가 하나라도 익스텐션되면 다른 카드의 제목 숨기기 */
+        .travel-container:hover .travel-card .title-only {
+            opacity: 0;
+        }
+
+        .travel-container:hover .travel-card:hover .content-overlay {
+            opacity: 1; /* 상세 글 보이기 */
+        }
+
+        .travel-container:hover .travel-card {
+            flex: 0.5;
+        }
+        .travel-container:hover .travel-card:hover {
+            flex: 4;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+
+    <nav class="fixed w-full z-50 bg-slate-900/60 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-black tracking-tighter text-orange-500">I AM.</h1>
+            <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
+                <a href="#basketball" class="hover:text-orange-500 transition">Basketball</a>
+                <a href="#gaming" class="hover:text-purple-500 transition">Gaming</a>
+                <a href="#travel" class="hover:text-teal-500 transition">Travel</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-bg min-h-screen flex flex-col justify-center items-center text-center px-6">
+        <h2 class="text-5xl md:text-7xl font-black mb-6 tracking-wide italic px-8">
+            PLAY MY 
+            <span class="inline-block pr-4 -mr-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-purple-400 to-teal-400">
+                WAY
+            </span>
+        </h2>
+        <p class="text-slate-300 text-xl md:text-2xl max-w-3xl font-light">
+            스포츠부터 게임까지, 내가 즐기는 모든 것
+        </p>
+        <a href="#basketball" class="mt-12 px-10 py-4 border-2 border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-bold">START EXPLORING</a>
+    </header>
+
+    <section id="basketball" class="py-32 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h3 class="text-5xl font-black mb-8 text-orange-500 italic">BASKETBALL</h3>
+                <h4 class="text-3xl font-bold mb-4">Position: <span class="underline decoration-orange-500">Point Guard</span></h4>
+                <p class="text-slate-400 text-lg leading-relaxed mb-12">
+                    직접 코트에서 뛰는 것도 좋아하지만, NBA 경기를 보며 전술을 분석하는 열혈 팬이기도 합니다. 포인트 가드로서의 움직임과 프로들의 화려한 플레이를 모두 사랑합니다.
+                </p>
+                <div class="mt-16">
+                    <img src="https://www.pngarts.com/files/12/NBA-Logo-PNG-Transparent-Image.png" alt="NBA Logo" class="w-96 h-auto opacity-90 hover:opacity-100 transition duration-500 shadow-2xl">
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-6">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-orange-600 to-orange-400 rounded-3xl blur opacity-25 group-hover:opacity-50 transition"></div>
+                    <video src="https://i.namu.wiki/i/wDLhNmhZ_aSv3c_ZlVK-SQ6KLwAm0BAmBBFe1caFK1mUg88t2FJLCWSeD55mW8NWOysBIngL5qzNQdeHSKaF7Q.mp4" autoplay muted loop playsinline class="relative rounded-3xl w-full shadow-2xl"></video>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-orange-600 to-orange-400 rounded-3xl blur opacity-25 group-hover:opacity-50 transition"></div>
+                    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWZzd2g3emFtZjRoOTNnZWg4dThpdzhmc3BqbHUycmtqanVlM3RlYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rBVM213ASKBIk/giphy.gif" class="relative rounded-3xl w-full shadow-2xl" alt="NBA GIF">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gaming" class="py-32 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="text-5xl font-black mb-16 text-center text-purple-500 italic">MY GAMING ARENA</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div onclick="window.open('https://www.leagueoflegends.com/ko-kr/')" class="interactive-card bg-slate-800 rounded-3xl overflow-hidden border border-slate-700">
+                    <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/YABJ7CAXOZDVHAXSDRSQQ7NJR4.jpg" class="w-full h-48 object-cover" alt="LoL">
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold mb-2">League of Legends</h4>
+                        <p class="text-slate-400">팀 전략과 화려한 피지컬의 정점. 소환사의 협곡에서 펼쳐지는 전투.</p>
+                        <span class="mt-4 inline-block text-purple-400 text-sm font-bold uppercase tracking-wider">VISIT WEBSITE →</span>
+                    </div>
+                </div>
+                <div onclick="window.open('https://supercell.com/en/games/clashroyale/')" class="interactive-card bg-slate-800 rounded-3xl overflow-hidden border border-slate-700">
+                    <img src="https://yt3.googleusercontent.com/fBeiPYv-OCQ4AZgTGSBy7tRzmHe9KwRkpHfnmv1pRX2SmxrVxI7dKEXIco_zWKNfReCvptj9Lg=s900-c-k-c0x00ffffff-no-rj" class="w-full h-48 object-cover" alt="Clash Royale">
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold mb-2">Clash Royale</h4>
+                        <p class="text-slate-400">실시간 전략 카드 배틀. 나만의 덱으로 상대의 타워를 무너뜨립니다.</p>
+                        <span class="mt-4 inline-block text-purple-400 text-sm font-bold uppercase tracking-wider">VISIT WEBSITE →</span>
+                    </div>
+                </div>
+                <div onclick="window.open('https://www.pokemon.com/')" class="interactive-card bg-slate-800 rounded-3xl overflow-hidden border border-slate-700">
+                    <img src="https://images.unsplash.com/photo-1613771404721-1f92d799e49f?q=80&w=800&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Pokemon">
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold mb-2">Pokémon</h4>
+                        <p class="text-slate-400">모험과 수집의 클래식. 다양한 포켓몬들과 떠나는 세계 여행.</p>
+                        <span class="mt-4 inline-block text-purple-400 text-sm font-bold uppercase tracking-wider">VISIT WEBSITE →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="travel" class="py-32 max-w-6xl mx-auto px-6">
+        <h3 class="text-5xl font-black mb-16 text-right text-teal-500 italic">TRAVEL FOOTPRINTS</h3>
+        <div class="travel-container">
+            <div class="travel-card">
+                <img src="https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/09fa683d-8c7e-4ffe-9a58-366957d97579.jpeg" class="w-full h-full object-cover" alt="Tokyo">
+                <div class="overlay-dim"></div>
+                <div class="absolute inset-0 flex items-center justify-center title-only">
+                    <p class="font-bold text-4xl text-white">TOKYO</p>
+                </div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end text-left content-overlay">
+                    <p class="font-bold text-3xl text-teal-400">TOKYO</p>
+                    <p class="text-white mt-4 italic">과거와 미래가 공존하는 매력적인 도시. 신주쿠의 야경과 시부야의 활기를 즐깁니다.</p>
+                </div>
+            </div>
+            <div class="travel-card">
+                <img src="https://assets.travelodgehotels.asia/cdn-cgi/image/width=1920,quality=75,format=auto,height=1289,fit=crop/5%20Top%20Attractions%20in%20Nagoya%20for%20Your%20Next%20Adventure.png" class="w-full h-full object-cover" alt="Nagoya">
+                <div class="overlay-dim"></div>
+                <div class="absolute inset-0 flex items-center justify-center title-only">
+                    <p class="font-bold text-4xl text-white">NAGOYA</p>
+                </div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end text-left content-overlay">
+                    <p class="font-bold text-3xl text-teal-400">NAGOYA</p>
+                    <p class="text-white mt-4 italic">일본의 역사를 느낄 수 있는 곳. 맛있는 음식과 함께하는 평온한 산책을 좋아합니다.</p>
+                </div>
+            </div>
+            <div class="travel-card">
+                <img src="https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="Vietnam">
+                <div class="overlay-dim"></div>
+                <div class="absolute inset-0 flex items-center justify-center title-only">
+                    <p class="font-bold text-4xl text-white">VIETNAM</p>
+                </div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end text-left content-overlay">
+                    <p class="font-bold text-3xl text-teal-400">VIETNAM</p>
+                    <p class="text-white mt-4 italic">아름다운 자연과 활기찬 에너지. 환상적인 커피 문화를 즐길 수 있는 최고의 여행지.</p>
+                </div>
+            </div>
+            <div class="travel-card">
+                <img src="https://pimg.mk.co.kr/meet/neds/2022/02/image_readtop_2022_130158_16455143614940945.jpg" class="w-full h-full object-cover" alt="Thailand">
+                <div class="overlay-dim"></div>
+                <div class="absolute inset-0 flex items-center justify-center title-only">
+                    <p class="font-bold text-4xl text-white">THAILAND</p>
+                </div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end text-left content-overlay">
+                    <p class="font-bold text-3xl text-teal-400">THAILAND</p>
+                    <p class="text-white mt-4 italic">찬란한 사원과 에메랄드빛 해변. 쉼 없이 돌아가는 야시장의 열기를 사랑합니다.</p>
+                </div>
+            </div>
+            <div class="travel-card">
+                <img src="https://www.morningfocus.net/news/photo/202304/1247_1607_429.jpg" class="w-full h-full object-cover" alt="Singapore">
+                <div class="overlay-dim"></div>
+                <div class="absolute inset-0 flex items-center justify-center title-only">
+                    <p class="font-bold text-4xl text-white">SINGAPORE</p>
+                </div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end text-left content-overlay">
+                    <p class="font-bold text-3xl text-teal-400">SINGAPORE</p>
+                    <p class="text-white mt-4 italic">도시 전체가 정원인 듯한 깨끗한 매력. 미래지향적인 마리나 베이 샌즈의 야경은 최고입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-slate-900">
+        <h5 class="text-4xl font-black mb-4">I AM STILL <span class="text-orange-500 italic">GROWING</span></h5>
+        <p class="text-slate-500 uppercase tracking-widest text-sm">© 2024 I AM PROJECT. BUILD YOUR OWN WORLD.</p>
+    </footer>
+
+</body>
+</html>
