@@ -28,15 +28,15 @@
     <main class="pt-32 pb-20 max-w-6xl mx-auto px-6">
         <h3 class="text-5xl font-black mb-16 italic text-purple-500">MY GAMING ARENA</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="interactive-card bg-slate-800 p-6 rounded-2xl">
+            <div onclick="window.open('https://www.leagueoflegends.com/ko-kr/')" class="interactive-card bg-slate-800 p-6 rounded-2xl">
                 <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/YABJ7CAXOZDVHAXSDRSQQ7NJR4.jpg" class="mb-4 rounded-xl h-48 w-full object-cover">
                 <h5 class="font-bold text-xl">LoL: 전략의 재미</h5>
             </div>
-            <div class="interactive-card bg-slate-800 p-6 rounded-2xl">
+            <div onclick="window.open('https://supercell.com/en/games/clashroyale/')" class="interactive-card bg-slate-800 p-6 rounded-2xl">
                 <img src="https://yt3.googleusercontent.com/fBeiPYv-OCQ4AZgTGSBy7tRzmHe9KwRkpHfnmv1pRX2SmxrVxI7dKEXIco_zWKNfReCvptj9Lg=s900-c-k-c0x00ffffff-no-rj" class="mb-4 rounded-xl h-48 w-full object-cover">
                 <h5 class="font-bold text-xl">Clash Royale</h5>
             </div>
-            <div class="interactive-card bg-slate-800 p-6 rounded-2xl">
+            <div onclick="window.open('https://www.pokemon.com/')" class="interactive-card bg-slate-800 p-6 rounded-2xl">
                 <img src="https://images.unsplash.com/photo-1613771404721-1f92d799e49f?q=80&w=800&auto=format&fit=crop" class="mb-4 rounded-xl h-48 w-full object-cover">
                 <h5 class="font-bold text-xl">Pokémon</h5>
             </div>
@@ -47,10 +47,15 @@
         window.onload = () => { document.body.style.opacity = '1'; };
         const pages = ['index.html', 'hobbies.html', 'game.html', 'travel.html'];
         window.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
+            // 게임 카드 클릭 시 페이지 전환 방지
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || 
+                e.target.closest('a') || e.target.closest('button') || 
+                e.target.closest('.interactive-card')) return;
+
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const currentIndex = pages.indexOf(currentPage);
             const targetPage = e.clientX > window.innerWidth / 2 ? pages[(currentIndex + 1) % pages.length] : pages[(currentIndex - 1 + pages.length) % pages.length];
+            
             document.body.style.opacity = '0';
             setTimeout(() => { window.location.href = targetPage; }, 500);
         });
